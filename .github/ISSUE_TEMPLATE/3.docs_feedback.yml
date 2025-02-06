@@ -1,7 +1,7 @@
-name: '📖 Docs Feedback'
+name: "📖 Docs Feedback"
 description: Improve documentation about G6 / 助力 G6 打造出更易于上手操作以及便捷查阅的文档
-labels: ['waiting for maintainer', 'documentation 📖']
-title: '[docs] '
+labels: ["waiting for maintainer"]
+title: "[docs]: "
 body:
   - type: input
     id: page-url

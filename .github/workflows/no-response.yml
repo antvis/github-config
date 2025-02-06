@@ -1,0 +1,42 @@
+name: No Response
+
+# `issues`.`closed`, `issue_comment`.`created`, and `scheduled` event types are required for this Action
+# to work properly.
+on:
+  issues:
+    types:
+      - closed
+  issue_comment:
+    types:
+      - created
+  schedule:
+    # These runs in our repos are spread evenly throughout the day to avoid hitting rate limits.
+    # If you change this schedule, consider changing the remaining repositories as well.
+    # Runs at 12 am, 12 pm
+    - cron: "0 0,12 * * *"
+
+permissions: {}
+
+jobs:
+  noResponse:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: MBilalShafi/no-response-add-label@0.0.6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # Number of days of inactivity before an Issue is closed for lack of response
+          daysUntilClose: 14
+          # Label requiring a response
+          responseRequiredLabel: "waiting for author"
+          # Label to add back when required label is removed
+          optionalFollowupLabel: "waiting for maintainer"
+          # Comment to post when closing an Issue for lack of response. Set to `false` to disable
+          closeComment: >
+            🚫 This issue has been automatically closed due to inactivity and missing key information. Feel free to reopen it if you have any updates.
+
+            ---
+
+            🚫 此议题由于长时间没有活动而自动关闭了。如果你有更多信息，欢迎随时重新开启讨论哦。
