@@ -11,8 +11,8 @@ jobs:
       issues: write
     steps:
       - name: Warn Bad Issue
-        if: ${{ github.event.label.name == 'need improvement' }}
-        uses: actions-cool/issues-helper@v3.6.0
+        if: github.event.label.name == 'need improvement'
+        uses: actions-cool/issues-helper@v3
         with:
           actions: "create-comment"
           token: ${{ secrets.GITHUB_TOKEN }}
