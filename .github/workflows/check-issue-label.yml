@@ -1,5 +1,5 @@
-# This workflow automatically removes the 'waiting for maintainer' label 
-# when certain labels (like 'waiting for author', 'need improvement', etc.) 
+# This workflow automatically removes the 'waiting for maintainer' label
+# when certain labels (like 'waiting for author', 'need improvement', etc.)
 # are added to an issue
 name: Check Issue Label
 
@@ -16,7 +16,8 @@ jobs:
     permissions:
       issues: write
     steps:
-      - uses: actions/github-script@v7.0.1
+      - name: Remove `waiting for maintainer` label when other triage labels are added
+        uses: actions/github-script@v7.0.1
         with:
           script: |
             const labelsToCheck = ['waiting for author', 'need improvement', 'bug 🐛', 'documentation 📖', 'feature 💡', 'question 💬', 'notabug', 'stale', 'wontfix', 'duplicate'];
@@ -41,3 +42,11 @@ jobs:
                   });
                 }
             }
+      - name: Append label if `need improvement` is added
+        if: ${{ github.event.label.name == 'need improvement' }}
+        uses: actions-cool/issues-helper@v3.6.0
+        with:
+          actions: "add-labels"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
+          labels: "waiting for author"

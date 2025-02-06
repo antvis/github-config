@@ -1,0 +1,36 @@
+name: Auto Comment Issue
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  auto-comment:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Warn Bad Issue
+        if: ${{ github.event.label.name == 'need improvement' }}
+        uses: actions-cool/issues-helper@v3.6.0
+        with:
+          actions: "create-comment"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            📝 To help us better understand and address your issue, **please provide more information, or use the standard format**, otherwise we will not process this issue.
+
+            Reference document: 
+
+              - [Creating an issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/creating-an-issue)
+              - [Basic writing and formatting syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+
+            ---
+
+            📝 为了帮助我们更好地理解和解决你的问题，**请提供更多信息，或者使用规范的格式**，否则我们不会处理这个 issue。
+
+            参考文档：
+
+              - [创建议题](https://docs.github.com/zh/issues/tracking-your-work-with-issues/using-issues/creating-an-issue)
+              - [基本撰写和格式语法](https://docs.github.com/zh/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+          emoji: "heart"
