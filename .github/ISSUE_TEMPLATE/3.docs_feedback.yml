@@ -40,7 +40,7 @@ body:
     attributes:
       label: "🤔 Tell us more"
       description: |
-        We'd love to hear your thoughts! What could be better? / 我们很想听听您的想法！哪些地方可以改进？
+        Let us know what went wrong when you were using this documentation and what we could do to improve it | 请告知您在使用此文档时遇到的问题以及我们可以改进的地方
       placeholder: |
         Share your experience:
         - What confused you?
@@ -59,7 +59,7 @@ body:
     attributes:
       label: "💡 Got any suggestions?"
       description: |
-        Have ideas on how to make it better? We're all ears! / 有改进的想法吗？我们洗耳恭听！
+        What are you trying to accomplish? Providing context helps us come up with a solution that is more useful in the real world | 您希望实现什么目标？提供上下文有助于我们提出更实用的解决方案
       placeholder: |
         Some ideas you might share:
         - Adding more examples

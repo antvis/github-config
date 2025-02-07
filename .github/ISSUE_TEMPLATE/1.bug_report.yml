@@ -16,7 +16,7 @@ body:
 
         在提交新 issue 之前，先通过以下链接检查是否存在相同问题:
 
-        > [Issues](../../issues) | [Closed Issues](../../issues?q=is:issue+is:closed) | [Discussions](../../discussions)
+        > [Issues](../issues) | [Closed Issues](../issues?q=is:issue+is:closed) | [Discussions](../discussions)
 
   - type: textarea
     id: description
