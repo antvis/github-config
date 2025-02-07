@@ -117,11 +117,7 @@ This workflow manages labeled issues.
 
 When an issue is labeled, the workflow will automatically:
 
-1. If one of the triage labels is added, the workflow will automatically:
-
-   - Remove `waiting for maintainer`(If exists)
-
-   Triage labels:
+1. Triage labels:
 
    - `bug 🐛`
    - `documentation 📖`
@@ -133,22 +129,26 @@ When an issue is labeled, the workflow will automatically:
    - `need improvement`
    - `waiting for author`
 
-1. If `need improvement` label is added, the workflow will automatically:
+   If one of the triage labels is added, the workflow will automatically:
+
+   - Remove `waiting for maintainer`(If exists)
+
+2. If `need improvement` label is added, the workflow will automatically:
 
    - Add `waiting for author` label
    - Add a pre-canned comment with formatting guidelines
 
-1. If `stale` label is added, the workflow will automatically:
+3. If `stale` label is added, the workflow will automatically:
 
    - Add a pre-canned comment about inactivity
    - Close the issue
 
-1. If `wontfix` label is added, the workflow will automatically:
+4. If `wontfix` label is added, the workflow will automatically:
 
    - Add a pre-canned comment explaining the decision
    - Close the issue
 
-1. If `notabug` label is added, the workflow will automatically:
+5. If `notabug` label is added, the workflow will automatically:
 
    - Add a pre-canned comment explaining the decision
    - Close the issue
