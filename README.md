@@ -19,31 +19,18 @@ cd your-project-root
 sync-shared-config
 ```
 
-3. Check the changes in `your-project-root/.github` directory.
-
-The following configurations will be synced from `antvis/github-config`:
+3. ✨ Now you can find the AntV's shared config in `your-project-root/.github` directory, including:
 
 - [Label configurations](#labels)
 - [GitHub Actions workflows](#github-actions-workflows)
 - [Issue templates](#issue-templates)
 - [Pull request template](#pull-request-template)
 
-✅ **Recommended**:
-
-- Extend labels with stack-specific categories, e.g. `extension:behavior`
-- Modify issue template for specific scenarios
-
-⚠️ **Not Recommended**:
-
-- Modifying shared workflow file names or core logic
-- Altering the structure of shared templates
-- Changing standardized AntV label names or removing them
-
-> **Important**: Standard AntV labels are integrated with automated workflows. Modifying or removing these labels may break automation processes.
-
 ### Labels
 
 Below are charts describing all of the common labels across the AntV repos.
+
+> **Important**: Standard AntV labels are integrated with automated workflows. Modifying or removing these labels may break automation processes.
 
 We divide them based on the typical flow of an issue's lifecycle: **Discovery**, **Triaging**, **In Progress**, **Resolution**.
 
