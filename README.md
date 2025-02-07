@@ -61,11 +61,13 @@ We divide them based on the typical flow of an issue's lifecycle: **Discovery**,
 
 #### 4. Resolution Stage (Labels for the final stage of an issue when it is either resolved or closed)
 
-| Label   | Color                                            | Hex       | Description                                                                                              |
-| ------- | ------------------------------------------------ | --------- | -------------------------------------------------------------------------------------------------------- |
-| stale   | ![](https://dummyimage.com/100x20/eeeeee&text=+) | `#eeeeee` | This issue has not had recent activity or appears to be solved. It will be automatically closed.         |
-| wontfix | ![](https://dummyimage.com/100x20/eeeeee&text=+) | `#eeeeee` | This issue will not be fixed or otherwise handled. It will be automatically closed.                      |
-| notabug | ![](https://dummyimage.com/100x20/eeeeee&text=+) | `#eeeeee` | This issue reported is not a bug (e.g., misreported, not reproducible) and will be automatically closed. |
+| Label                    | Color                                            | Hex       | Description                                                                                              |
+| ------------------------ | ------------------------------------------------ | --------- | -------------------------------------------------------------------------------------------------------- |
+| resolved                 | ![](https://dummyimage.com/100x20/008672&text=+) | `#0E8A16` | This issue has been resolved and is now available in the latest release.                                 |
+| resolved-pending-release | ![](https://dummyimage.com/100x20/008672&text=+) | `#0E8A16` | This issue has been resolved and is pending release.                                                     |
+| stale                    | ![](https://dummyimage.com/100x20/eeeeee&text=+) | `#eeeeee` | This issue has not had recent activity or appears to be solved. It will be automatically closed.         |
+| wontfix                  | ![](https://dummyimage.com/100x20/eeeeee&text=+) | `#eeeeee` | This issue will not be fixed or otherwise handled. It will be automatically closed.                      |
+| notabug                  | ![](https://dummyimage.com/100x20/eeeeee&text=+) | `#eeeeee` | This issue reported is not a bug (e.g., misreported, not reproducible) and will be automatically closed. |
 
 ## GitHub Actions workflows
 
