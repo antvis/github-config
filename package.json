@@ -1,10 +1,17 @@
 {
   "name": "@antv/github-config-cli",
   "version": "0.0.1",
+  "repository": "https://github.com/antvis/github-config",
+  "keywords": [
+    "antv"
+  ],
   "description": "CLI for AntV's shared GitHub templates and workflows.",
   "bin": {
     "sync-shared-config": "./scripts/sync-shared-config.js"
   },
   "author": "yvonneyx",
-  "license": "ISC"
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "license": "MIT"
 }

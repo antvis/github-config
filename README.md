@@ -4,19 +4,24 @@
 
 ## Quick Start
 
+Use the following command to **sync the AntV's shared config to your project**.
+
 1. Install
 
 ```bash
 npm install @antv/github-config-cli -g  # or use pnpm/yarn
 ```
 
-2. Run in your project root
+2. Run in your project **root**
 
 ```bash
+cd your-project-root
 sync-shared-config
 ```
 
-This will sync the following configurations from `antvis/github-config`:
+3. Check the changes in `your-project-root/.github` directory.
+
+The following configurations will be synced from `antvis/github-config`:
 
 - [Label configurations](#labels)
 - [GitHub Actions workflows](#github-actions-workflows)
@@ -38,7 +43,9 @@ This will sync the following configurations from `antvis/github-config`:
 
 ### Labels
 
-Below are charts describing all of the common labels across the AntV repos. We divide them based on the typical flow of an issue's lifecycle: **Discovery**, **Triaging**, **In Progress**, **Resolution**.
+Below are charts describing all of the common labels across the AntV repos.
+
+We divide them based on the typical flow of an issue's lifecycle: **Discovery**, **Triaging**, **In Progress**, **Resolution**.
 
 #### 1. Discovery Stage (Labels that help in identifying the issue and gathering more context)
 
@@ -77,7 +84,7 @@ Below are charts describing all of the common labels across the AntV repos. We d
 
 The following workflows are related to the issue management.
 
-`mark-duplicate.yml`
+### `mark-duplicate.yml`
 
 This workflow will mark the issue as duplicate if it is a duplicate of another issue.
 
@@ -98,7 +105,7 @@ Where #12 is the number of the original issue.
 - Close the issue
 - Create a reference link to the original issue in the comment
 
-`ensure-triage-label.yml`
+### `ensure-triage-label.yml`
 
 This workflow ensures that new issues are added to the triage queue.
 
@@ -107,7 +114,7 @@ When an issue is opened, the workflow automatically:
 - Check the current labels
 - If no labels are present, add the "waiting for maintainer" label
 
-`no-response.yml`
+### `no-response.yml`
 
 Close issues where original author doesn't respond to a request for more information within 7 days.
 
@@ -117,7 +124,7 @@ When an issue is labeled with `waiting for author`, the workflow will automatica
 - If the author has not responded **within 7 days**, close the issue
 - If the author has responded, remove the `waiting for author` label and add the `waiting for maintainer` label
 
-`manage-labeled.yml`
+### `manage-labeled.yml`
 
 This workflow manages labeled issues.
 
