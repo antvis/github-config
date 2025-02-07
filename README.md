@@ -155,6 +155,16 @@ When an issue is labeled, the workflow will automatically:
    - Add a pre-canned comment explaining the decision
    - Close the issue
 
+### `resolved-pending-release.yml`
+
+This workflow will resolve issues that have been resolved and are pending release.
+
+When a release is published, the workflow will automatically:
+
+- Check if there are any issues that labeled with `resolved pending release`
+- If there are, it will add a comment to the issue with a message about the release
+- Close the issue
+
 ## Issue templates
 
 | Template                | Description                                                                               |
