@@ -10,6 +10,7 @@ module.exports = async ({ core, github, context }) => {
     const repo = context.repo.repo;
 
     const label = "resolved pending release";
+    const resolvedLabel = "resolved";
 
     const issuesPendingRelease = (
       await github.paginate(github.rest.issues.listForRepo, {
@@ -45,6 +46,22 @@ module.exports = async ({ core, github, context }) => {
       const message = `:tada: This issue has been resolved and is now available in the [${release.tag_name}](${release.html_url}) release! :tada:`;
 
       try {
+        // Remove the `resolved pending release` label.
+        await github.rest.issues.removeLabel({
+          owner,
+          repo,
+          issue_number: number,
+          name: label,
+        });
+
+        // Add the `resolved` label.
+        await github.rest.issues.addLabels({
+          owner,
+          repo,
+          issue_number: number,
+          labels: resolvedLabel,
+        });
+
         // Comment on the issue that we will close.
         await github.rest.issues.createComment({
           owner,

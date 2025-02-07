@@ -143,17 +143,17 @@ When an issue is labeled, the workflow will automatically:
 3. If `stale` label is added, the workflow will automatically:
 
    - Add a pre-canned comment about inactivity
-   - Close the issue
+   - Close the issue as not-planned
 
 4. If `wontfix` label is added, the workflow will automatically:
 
    - Add a pre-canned comment explaining the decision
-   - Close the issue
+   - Close the issue as not-planned
 
 5. If `notabug` label is added, the workflow will automatically:
 
    - Add a pre-canned comment explaining the decision
-   - Close the issue
+   - Close the issue as not-planned
 
 ### `resolved-pending-release.yml`
 
@@ -161,9 +161,12 @@ This workflow will resolve issues that have been resolved and are pending releas
 
 When a release is published, the workflow will automatically:
 
-- Check if there are any issues that labeled with `resolved pending release`
-- If there are, it will add a comment to the issue with a message about the release
-- Close the issue
+- Find open issues that labeled with `resolved pending release`
+- If there are,
+  - Remove the `resolved pending release` label
+  - Add the `resolved` label
+  - Add a comment to the issue with a message about the release
+  - Close the issue as completed
 
 ## Issue templates
 
