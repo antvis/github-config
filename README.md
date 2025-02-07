@@ -61,11 +61,13 @@ We divide them based on the typical flow of an issue's lifecycle: **Discovery**,
 
 #### 4. Resolution Stage (Labels for the final stage of an issue when it is either resolved or closed)
 
-| Label   | Color                                            | Hex       | Description                                                                                              |
-| ------- | ------------------------------------------------ | --------- | -------------------------------------------------------------------------------------------------------- |
-| stale   | ![](https://dummyimage.com/100x20/eeeeee&text=+) | `#eeeeee` | This issue has not had recent activity or appears to be solved. It will be automatically closed.         |
-| wontfix | ![](https://dummyimage.com/100x20/eeeeee&text=+) | `#eeeeee` | This issue will not be fixed or otherwise handled. It will be automatically closed.                      |
-| notabug | ![](https://dummyimage.com/100x20/eeeeee&text=+) | `#eeeeee` | This issue reported is not a bug (e.g., misreported, not reproducible) and will be automatically closed. |
+| Label                    | Color                                            | Hex       | Description                                                                                              |
+| ------------------------ | ------------------------------------------------ | --------- | -------------------------------------------------------------------------------------------------------- |
+| resolved                 | ![](https://dummyimage.com/100x20/008672&text=+) | `#0E8A16` | This issue has been resolved and is now available in the latest release.                                 |
+| resolved pending release | ![](https://dummyimage.com/100x20/008672&text=+) | `#0E8A16` | This issue has been resolved and is pending release.                                                     |
+| stale                    | ![](https://dummyimage.com/100x20/eeeeee&text=+) | `#eeeeee` | This issue has not had recent activity or appears to be solved. It will be automatically closed.         |
+| wontfix                  | ![](https://dummyimage.com/100x20/eeeeee&text=+) | `#eeeeee` | This issue will not be fixed or otherwise handled. It will be automatically closed.                      |
+| notabug                  | ![](https://dummyimage.com/100x20/eeeeee&text=+) | `#eeeeee` | This issue reported is not a bug (e.g., misreported, not reproducible) and will be automatically closed. |
 
 ## GitHub Actions workflows
 
@@ -141,17 +143,30 @@ When an issue is labeled, the workflow will automatically:
 3. If `stale` label is added, the workflow will automatically:
 
    - Add a pre-canned comment about inactivity
-   - Close the issue
+   - Close the issue as not-planned
 
 4. If `wontfix` label is added, the workflow will automatically:
 
    - Add a pre-canned comment explaining the decision
-   - Close the issue
+   - Close the issue as not-planned
 
 5. If `notabug` label is added, the workflow will automatically:
 
    - Add a pre-canned comment explaining the decision
-   - Close the issue
+   - Close the issue as not-planned
+
+### `resolved-pending-release.yml`
+
+This workflow will resolve issues that have been resolved and are pending release.
+
+When a release is published, the workflow will automatically:
+
+- Find open issues that labeled with `resolved pending release`
+- If there are,
+  - Remove the `resolved pending release` label
+  - Add the `resolved` label
+  - Add a comment to the issue with a message about the release
+  - Close the issue as completed
 
 ## Issue templates
 
