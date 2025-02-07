@@ -1,4 +1,4 @@
-name: Issue Mark Duplicate
+name: Mark Duplicate Issue
 
 on:
   issue_comment:
@@ -13,7 +13,7 @@ jobs:
       contents: read
       issues: write
     steps:
-      - name: mark-duplicate
+      - name: Mark duplicate issue
         uses: actions-cool/issues-helper@v3.6.0
         with:
           actions: "mark-duplicate"
