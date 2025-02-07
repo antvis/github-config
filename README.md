@@ -32,7 +32,7 @@ Below are charts describing all of the common labels across the AntV repos. We d
 | good first issue | ![](https://dummyimage.com/100x20/7057ff&text=+) | `#7057ff` | Good for newcomers.                                                         |
 | help wanted      | ![](https://dummyimage.com/100x20/008672&text=+) | `#008672` | Anyone can help, whether you’re a seasoned developer or new to the project. |
 
-#### 4. Reslution Stage (Labels for the final stage of an issue when it is either resolved or closed)
+#### 4. Resolution Stage (Labels for the final stage of an issue when it is either resolved or closed)
 
 | Label   | Color                                            | Hex       | Description                                                                                      |
 | ------- | ------------------------------------------------ | --------- | ------------------------------------------------------------------------------------------------ |
