@@ -59,7 +59,7 @@ module.exports = async ({ core, github, context }) => {
           owner,
           repo,
           issue_number: number,
-          labels: resolvedLabel,
+          labels: [resolvedLabel],
         });
 
         // Comment on the issue that we will close.
