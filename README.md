@@ -1,6 +1,6 @@
 # github-config
 
-🔧 Centralized hub for AntV's shared GitHub templates and workflows.
+🤖️ Centralized hub for AntV's shared GitHub templates and workflows.
 
 ## Quick Start
 
@@ -25,15 +25,14 @@ This will sync the following configurations from `antvis/github-config`:
 
 ✅ **Recommended**:
 
-- Add tech stack specific workflows
 - Extend labels with stack-specific categories, e.g. `extension:behavior`
 - Modify issue template for specific scenarios
 
 ⚠️ **Not Recommended**:
 
-- Modifying existing workflow file names or core logic
-- Changing standardized AntV label names or removing them
+- Modifying shared workflow file names or core logic
 - Altering the structure of shared templates
+- Changing standardized AntV label names or removing them
 
 > **Important**: Standard AntV labels are integrated with automated workflows. Modifying or removing these labels may break automation processes.
 
@@ -51,14 +50,13 @@ Below are charts describing all of the common labels across the AntV repos. We d
 
 #### 2. Triaging Stage (Labels that help in categorizing the issue)
 
-| Label            | Color                                            | Hex       | Description                                                                                              |
-| ---------------- | ------------------------------------------------ | --------- | -------------------------------------------------------------------------------------------------------- |
-| bug 🐛           | ![](https://dummyimage.com/100x20/D93F0B&text=+) | `#ee0701` | Something isn't working.                                                                                 |
-| documentation 📖 | ![](https://dummyimage.com/100x20/d4c5f9&text=+) | `#d4c5f9` | Improvements or additions to documentation.                                                              |
-| feature 💡       | ![](https://dummyimage.com/100x20/a2eeef&text=+) | `#a2eeef` | A new feature request or an enhancement proposal.                                                        |
-| question 💬      | ![](https://dummyimage.com/100x20/cc317c&text=+) | `#cc317c` | This issue is just a question. It will be converted into discussion automatically.                       |
-| duplicate        | ![](https://dummyimage.com/100x20/eeeeee&text=+) | `#eeeeee` | This issue or PR already exists and may be closed with a reference to the original.                      |
-| notabug          | ![](https://dummyimage.com/100x20/eeeeee&text=+) | `#eeeeee` | This issue reported is not a bug (e.g., misreported, not reproducible) and will be automatically closed. |
+| Label            | Color                                            | Hex       | Description                                                                         |
+| ---------------- | ------------------------------------------------ | --------- | ----------------------------------------------------------------------------------- |
+| bug 🐛           | ![](https://dummyimage.com/100x20/D93F0B&text=+) | `#ee0701` | Something isn't working.                                                            |
+| documentation 📖 | ![](https://dummyimage.com/100x20/d4c5f9&text=+) | `#d4c5f9` | Improvements or additions to documentation.                                         |
+| feature 💡       | ![](https://dummyimage.com/100x20/a2eeef&text=+) | `#a2eeef` | A new feature request or an enhancement proposal.                                   |
+| question 💬      | ![](https://dummyimage.com/100x20/cc317c&text=+) | `#cc317c` | This issue is just a question. It will be converted into discussion automatically.  |
+| duplicate        | ![](https://dummyimage.com/100x20/eeeeee&text=+) | `#eeeeee` | This issue or PR already exists and may be closed with a reference to the original. |
 
 #### 3. In Progress Stage (Labels that indicate ongoing works)
 
@@ -69,13 +67,107 @@ Below are charts describing all of the common labels across the AntV repos. We d
 
 #### 4. Resolution Stage (Labels for the final stage of an issue when it is either resolved or closed)
 
-| Label   | Color                                            | Hex       | Description                                                                                      |
-| ------- | ------------------------------------------------ | --------- | ------------------------------------------------------------------------------------------------ |
-| stale   | ![](https://dummyimage.com/100x20/eeeeee&text=+) | `#eeeeee` | This issue has not had recent activity or appears to be solved. It will be automatically closed. |
-| wontfix | ![](https://dummyimage.com/100x20/eeeeee&text=+) | `#eeeeee` | This issue will not be fixed or otherwise handled. It will be automatically closed.              |
+| Label   | Color                                            | Hex       | Description                                                                                              |
+| ------- | ------------------------------------------------ | --------- | -------------------------------------------------------------------------------------------------------- |
+| stale   | ![](https://dummyimage.com/100x20/eeeeee&text=+) | `#eeeeee` | This issue has not had recent activity or appears to be solved. It will be automatically closed.         |
+| wontfix | ![](https://dummyimage.com/100x20/eeeeee&text=+) | `#eeeeee` | This issue will not be fixed or otherwise handled. It will be automatically closed.                      |
+| notabug | ![](https://dummyimage.com/100x20/eeeeee&text=+) | `#eeeeee` | This issue reported is not a bug (e.g., misreported, not reproducible) and will be automatically closed. |
 
 ## GitHub Actions workflows
 
+The following workflows are related to the issue management.
+
+`mark-duplicate.yml`
+
+This workflow will mark the issue as duplicate if it is a duplicate of another issue.
+
+If you find a duplicate issue, you can quickly handle it by following these steps:
+
+1. Post a comment under the issue in the following format:
+
+```text
+Duplicate of #12
+```
+
+Where #12 is the number of the original issue.
+
+2. After posting this comment, the workflow will automatically:
+
+- Add the "duplicate" label to the issue
+- Remove the "waiting for maintainer" label (if it exists)
+- Close the issue
+- Create a reference link to the original issue in the comment
+
+`ensure-triage-label.yml`
+
+This workflow ensures that new issues are added to the triage queue.
+
+When an issue is opened, the workflow automatically:
+
+- Check the current labels
+- If no labels are present, add the "waiting for maintainer" label
+
+`no-response.yml`
+
+Close issues where original author doesn't respond to a request for more information within 7 days.
+
+When an issue is labeled with `waiting for author`, the workflow will automatically:
+
+- Check if the original author has responded to the issue
+- If the author has not responded **within 7 days**, close the issue
+- If the author has responded, remove the `waiting for author` label and add the `waiting for maintainer` label
+
+`manage-labeled.yml`
+
+This workflow manages labeled issues.
+
+When an issue is labeled, the workflow will automatically:
+
+1. If one of the triage labels is added, the workflow will automatically:
+
+   - Remove `waiting for maintainer`(If exists)
+
+   Triage labels:
+
+   - `bug 🐛`
+   - `documentation 📖`
+   - `feature 💡`
+   - `question 💬`
+   - `notabug`
+   - `wontfix`
+   - `stale`
+   - `need improvement`
+   - `waiting for author`
+
+1. If `need improvement` label is added, the workflow will automatically:
+
+   - Add `waiting for author` label
+   - Add a pre-canned comment with formatting guidelines
+
+1. If `stale` label is added, the workflow will automatically:
+
+   - Add a pre-canned comment about inactivity
+   - Close the issue
+
+1. If `wontfix` label is added, the workflow will automatically:
+
+   - Add a pre-canned comment explaining the decision
+   - Close the issue
+
+1. If `notabug` label is added, the workflow will automatically:
+
+   - Add a pre-canned comment explaining the decision
+   - Close the issue
+
 ## Issue templates
+
+| Template                | Description                                                                               |
+| ----------------------- | ----------------------------------------------------------------------------------------- |
+| `1.bug_report.yml`      | Report a bug.                                                                             |
+| `2.feature_request.yml` | Request a new feature.                                                                    |
+| `3.docs_feedback.yml`   | Give feedback on the docs.                                                                |
+| `config.yml`            | Setup for discussion group and contact links. **Make sure to update the URLs as needed.** |
+
+> **Note:** This is a generic template. Please customize the content as necessary for your project. **Do not change the file names.**
 
 ## Pull request template
