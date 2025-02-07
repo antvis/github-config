@@ -9,21 +9,17 @@ module.exports = async ({ core, github, context }) => {
     const owner = context.repo.owner;
     const repo = context.repo.repo;
 
-    const label = "resolved pending release";
-    const resolvedLabel = "resolved";
+    const label = 'resolved pending release';
+    const resolvedLabel = 'resolved';
 
     const issuesPendingRelease = (
       await github.paginate(github.rest.issues.listForRepo, {
         owner,
         repo,
-        state: "open",
+        state: 'open',
         per_page: 100,
       })
-    ).filter(
-      (i) =>
-        i.pull_request === undefined &&
-        i.labels.map((l) => l.name).includes(label)
-    );
+    ).filter((i) => i.pull_request === undefined && i.labels.map((l) => l.name).includes(label));
 
     let failedIssues = 0;
 
@@ -40,7 +36,7 @@ module.exports = async ({ core, github, context }) => {
       const release = releases.length > 0 ? releases[0] : undefined;
 
       if (release === undefined) {
-        throw new Error("There is no release available");
+        throw new Error('There is no release available');
       }
 
       const message = `:tada: This issue has been resolved and is now available in the [${release.tag_name}](${release.html_url}) release! :tada:`;
@@ -75,13 +71,10 @@ module.exports = async ({ core, github, context }) => {
           owner,
           repo,
           issue_number: number,
-          state: "closed",
+          state: 'closed',
         });
       } catch (error) {
-        console.error(
-          `Failed to comment on and/or close issue #${number}`,
-          error
-        );
+        console.error(`Failed to comment on and/or close issue #${number}`, error);
         failedIssues++;
       }
 
