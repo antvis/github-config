@@ -176,6 +176,12 @@ When a release is published, the workflow will automatically:
   - Add a comment to the issue with a message about the release
   - Close the issue as completed
 
+### `sync-issue-label.yml`
+
+This workflow syncs the issue labels from the `antvis/github-config` repository to the current repository.
+
+**Important: Manually Trigger the workflow**
+
 ## Issue templates
 
 | Template                | Description                                                                               |
