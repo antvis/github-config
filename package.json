@@ -1,6 +1,6 @@
 {
   "name": "@antv/github-config-cli",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "repository": "https://github.com/antvis/github-config",
   "keywords": [
     "antv"
