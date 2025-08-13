@@ -91,7 +91,7 @@ jobs:
               {
                 name: 'oscp',
                 description: 'This issue is related to the OSCP (Open Source Contribution Plan)',
-                color: '##5E1CFF'
+                color: '#5E1CFF'
               }
             ];
 
