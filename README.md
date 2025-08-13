@@ -77,6 +77,12 @@ We divide them based on the typical flow of an issue's lifecycle: **Discovery**,
 | wontfix | ![](https://dummyimage.com/100x20/eeeeee&text=+) | `#eeeeee` | This issue will not be fixed or otherwise handled. It will be automatically closed. |
 | notabug | ![](https://dummyimage.com/100x20/eeeeee&text=+) | `#eeeeee` | This issue reported is not a bug (e.g., misreported, not reproducible) and will be automatically closed. |
 
+#### 5. OSCP (Labels for the open source contribution plan)
+
+| Label | Color | Hex | Description |
+| --- | --- | --- | --- |
+| oscp | ![](https://dummyimage.com/100x20/5E1CFF&text=+) | `#5E1CFF` | This issue is related to the OSCP (Open Source Contribution Plan). |
+
 ## GitHub Actions workflows
 
 The following workflows are related to the issue management.
@@ -162,6 +168,10 @@ When an issue is labeled, the workflow will automatically:
 
    - Add a pre-canned comment explaining the decision
    - Close the issue as not-planned
+
+6. If `oscp` label is added, the workflow will automatically:
+
+   - Add a pre-canned comment about oscp information
 
 ### `resolved-pending-release.yml`
 
